@@ -13,6 +13,7 @@ function App() {
 
   return (
     <div>
+    <h1>Dish list generator</h1>
     {user ? <Main user={user}/> : <Login fSetUser={fSetUser}/>}
     </div>
   )

@@ -40,7 +40,7 @@ const Login = ({fSetUser}) => {
      }
      
      return(
-    <div>
+    <div className='card'>
     <h1>Login</h1>
     <form>
         <div>
