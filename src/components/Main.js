@@ -5,7 +5,7 @@ const Main = (user) => {
     <div>
         <h1>Welcome, {user.user.firstName}!</h1>
         <h2>My dishes:</h2>
-        <Dishes dishes={user.user.dishes}/>
+        {user.user.dishes ? <Dishes dishes={user.user.dishes}/> : <h3>No dishes added</h3>}
     </div>
 )}
 
