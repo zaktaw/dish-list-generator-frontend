@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { API_BASE_URL } from '../Resources/consts';
 
-const Register = ({login}) => {
+const Register = ({fSetUser}) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -41,8 +41,11 @@ const Register = ({login}) => {
         fetch(API_BASE_URL + '/register', requestOptions)
             .then(async response => {
                 console.log("Response status:")
-                console.log(response.status)
-                if (response.status == 202) login()
+                console.log(response)
+                if (response.status == 202) {
+                    const data = await response.json()
+                    fSetUser(data)
+                }
                 else console.log("Registration failed")
             })
     }
@@ -51,14 +54,22 @@ const Register = ({login}) => {
         <div>
         <h1>Register account</h1>
         <form>
-            <label>First name:</label>
-            <input type="text" name="firstName" onChange={changeFirstName}/>
-            <label>Last name:</label>
-            <input type="text" name="lastName" onChange={changeLastName}/>
-            <label>Email:</label>
-            <input type="text" name="email" onChange={changeEmail}/>
-            <label>Password</label>
-            <input type="password" name="password" onChange={changePassword}/>
+            <div>
+                <label>First name:</label>
+                <input type="text" name="firstName" onChange={changeFirstName}/>
+            </div>
+            <div>
+                <label>Last name:</label>
+                <input type="text" name="lastName" onChange={changeLastName}/>
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="text" name="email" onChange={changeEmail}/>
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" onChange={changePassword}/>
+            </div>
         </form>
         <button onClick={regUser}>Register user</button>
         </div>
