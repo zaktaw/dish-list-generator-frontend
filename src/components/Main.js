@@ -12,7 +12,6 @@ const Main = (user) => {
 
     return(
     <div>
-        <h1>Welcome, {user.user.firstName}!</h1>
         <AddDish addDish={addDish} userId={user.user.id}/>
         <h2>My dishes:</h2>
         {user.user.dishes ? <Dishes dishes={dishes}/> : <h3>No dishes added</h3>}

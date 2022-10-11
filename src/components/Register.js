@@ -44,6 +44,7 @@ const Register = ({fSetUser}) => {
                 console.log(response)
                 if (response.status == 202) {
                     const data = await response.json()
+                    console.log(data);
                     fSetUser(data)
                 }
                 else console.log("Registration failed")

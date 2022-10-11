@@ -32,6 +32,12 @@ button {
   justify-content: space-evenly;
 }
 
+.logout {
+  position: absolute;
+  top: 0%;
+  left: 90%;
+}
+
 button {
   background-color: #54439a;
   border: none;
