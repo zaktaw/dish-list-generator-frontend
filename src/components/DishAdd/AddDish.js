@@ -49,8 +49,6 @@ const AddDish = ({addDish, userId}) => {
             ingredients: ingredients
         }
 
-        console.log(dish);
-
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -79,7 +77,7 @@ const AddDish = ({addDish, userId}) => {
     
 
     return(
-    <div className="addDish">
+    <div class="addDish">
 
     <h2>Add dish</h2>
 

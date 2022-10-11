@@ -4,7 +4,6 @@ const List = ({title, list, removeListItem}) => {
 
     function onClickHandler(e) {
         const listItemToBeRemoved = e.target.innerText;
-        console.log("Removing " + listItemToBeRemoved);
         removeListItem(listItemToBeRemoved);
     }
 

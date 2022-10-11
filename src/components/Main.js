@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Dishes from './DishesList/Dishes'
 import AddDish from './DishAdd/AddDish'
+import Generator from './Generator/Generator'
 
 const Main = (user) => {
 
@@ -10,10 +11,15 @@ const Main = (user) => {
         setDishes([...dishes, dish])
     }
 
+    function removeDish(dishToBeRemoved) {
+        setDishes(dishes.filter(dish => dish.id != dishToBeRemoved))
+    }
+
     return(
     <div>
+        <Generator/>
         <AddDish addDish={addDish} userId={user.user.id}/>
-        {user.user.dishes ? <Dishes dishes={dishes}/> : <h3>No dishes added</h3>}
+        {user.user.dishes ? <Dishes dishes={dishes} removeDish={removeDish} userId={user.user.id}/> : <h3>No dishes added</h3>}
     </div>
 )}
 
