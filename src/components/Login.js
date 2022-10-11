@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Register from "./Register";
 import { API_BASE_URL } from "../Resources/consts";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const Login = ({fSetUser}) => {
 
@@ -40,20 +41,19 @@ const Login = ({fSetUser}) => {
      }
      
      return(
-    <div className='card'>
+    <div>
     <h1>Login</h1>
-    <form>
-        <div>
-            <label>Email:</label>
-            <input type="text" name="email" onChange={changeEmail}/>
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password" onChange={changePassword}/>
-        </div>
-    </form>
-    <button onClick={login}>Login</button>
-    <Register fSetUser={fSetUser}/>
+    <Form>
+        <Form.Group className='w-25'>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type='email' placeholder='Enter email' onChange={changeEmail}></Form.Control>
+        </Form.Group>
+        <Form.Group className='w-25'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type='password' placeholder='Enter password' onChange={changePassword}></Form.Control>
+        </Form.Group>
+    </Form>
+    <Button variant="primary" onClick={login}>Login</Button>
     </div>
 )}
 

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Login from './components/Login';
+import LoginRegister from './components/LoginRegister';
 import Main from './components/Main';
-import './App.css';
 import Logout from './components/Logout';
+
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -16,7 +18,7 @@ function App() {
     <div>
     {user ? <Logout user={user} fSetUser={fSetUser}/> : null}
     <h1>Dish list generator</h1>
-    {user ? <Main user={user}/> : <Login fSetUser={fSetUser}/>}
+    {user ? <Main user={user}/> : <LoginRegister fSetUser={fSetUser}/>}
     </div>
   )
 }

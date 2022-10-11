@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { API_BASE_URL } from '../Resources/consts';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const Register = ({fSetUser}) => {
 
@@ -52,27 +54,27 @@ const Register = ({fSetUser}) => {
     }
 
     return(
-        <div>
+        <div className='register'>
         <h1>Register account</h1>
-        <form>
-            <div>
-                <label>First name:</label>
-                <input type="text" name="firstName" onChange={changeFirstName}/>
-            </div>
-            <div>
-                <label>Last name:</label>
-                <input type="text" name="lastName" onChange={changeLastName}/>
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="text" name="email" onChange={changeEmail}/>
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" onChange={changePassword}/>
-            </div>
-        </form>
-        <button onClick={regUser}>Register user</button>
+        <Form>
+            <Form.Group className='w-25'>
+                <Form.Group>First name:</Form.Group>
+                <Form.Control type="text" name="firstName" placeholder='Enter first name' onChange={changeFirstName}/>
+            </Form.Group>
+            <Form.Group className='w-25'>
+                <Form.Group>Last name:</Form.Group>
+                <Form.Control type="text" name="lastName" placeholder='Enter last name' onChange={changeLastName}/>
+            </Form.Group>
+            <Form.Group className='w-25'>
+                <Form.Group>Email:</Form.Group>
+                <Form.Control type="email" name="email" placeholder='Enter email' onChange={changeEmail}/>
+            </Form.Group>
+            <Form.Group className='w-25'>
+                <Form.Group>Password</Form.Group>
+                <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePassword}/>
+            </Form.Group>
+        </Form>
+        <Button onClick={regUser}>Register user</Button>
         </div>
 )};
 
