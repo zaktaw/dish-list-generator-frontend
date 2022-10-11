@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { API_BASE_URL } from "../Resources/consts";
+import { API_BASE_URL } from "../../Resources/consts";
+
+import List from "./List";
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const AddDish = ({addDish, userId}) => {
 
@@ -62,47 +70,48 @@ const AddDish = ({addDish, userId}) => {
     }
 
     return(
-    <div className="card">
+    <div className="addDish">
 
-    <h2 id="addDishHeader">Add dish</h2>
+    <h2>Add dish</h2>
 
-    <div className="addDish"> 
-    <form>
-        <div>
-            <label>Name</label>
-            <input type='text' value={name} onChange={changeName}></input>
-        </div>
-        <div>
-            <label>Ingredient</label>
-            <input type='text' onChange={changeIngredient} value={ingredient}></input>
-            <button onClick={addIngredient}>Add ingredient</button>
-        </div>
-        <div>
-            <label>Tag</label>
-            <input type='text' onChange={changeTag} value={tag}></input>
-            <button onClick={addTag}>Add tag</button>
-        </div>
-    </form>
-    <div>
-    <h5>Ingredients added</h5>
-    <ul>
-        {ingredients.map(ingredient => {
-            return <li>{ingredient}</li>
-        })}
-    </ul>
-    </div>
-    <div>
-    <h5>Tags added</h5>
-    <ul>
-        {tags.map(tag => {
-            return <li>{tag}</li>
-        })}
-    </ul>
-    </div>
-
-    </div>
-
+    <Container> 
+    <Row>
+    
+    <Col xs={6}>
+    <Form>
+        <Form.Group className='w-25'>
+            <Form.Label>Name</Form.Label>
+            <Form.Control type='text' value={name} onChange={changeName}></Form.Control>
+        </Form.Group>
+        <Form.Group className='w-25'>
+            <Form.Label>Ingredient</Form.Label>
+            <div className="d-flex">
+                <Form.Control type='text' onChange={changeIngredient} value={ingredient}></Form.Control>
+                <Button onClick={addIngredient}>+</Button>
+            </div>
+        </Form.Group>
+        <Form.Group className='w-25'>
+            <Form.Label>Tag</Form.Label>
+            <div className="d-flex">
+            <Form.Control type='text' onChange={changeTag} value={tag}></Form.Control>
+            <Button onClick={addTag}>+</Button>
+            </div>
+        </Form.Group>
+    </Form>
     <button id="btnSubmitDish" onClick={submitDish}>Submit dish</button>
+    </Col>
+
+    <Col>
+        <List title={'Ingredients'} list={ingredients}/>
+    </Col>
+
+    <Col>
+        <List title={'Tags'} list={tags}/>
+    </Col>
+
+    </Row>
+    </Container>
+        
 
     </div>
 )}

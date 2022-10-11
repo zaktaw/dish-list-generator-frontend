@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import LoginRegister from './components/LoginRegister';
 import Main from './components/Main';
-import Logout from './components/Logout';
+import Header from './components/Header';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,8 +16,7 @@ function App() {
 
   return (
     <div>
-    {user ? <Logout user={user} fSetUser={fSetUser}/> : null}
-    <h1>Dish list generator</h1>
+    <Header user={user} fSetUser={fSetUser}/>
     {user ? <Main user={user}/> : <LoginRegister fSetUser={fSetUser}/>}
     </div>
   )
