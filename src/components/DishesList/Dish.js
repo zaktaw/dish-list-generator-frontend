@@ -1,6 +1,6 @@
 const Dish = ({dish}) => {
     return(
-    <div className="card dish">
+    <div>
         <h3>{dish.name}</h3>
         <h4>Tags</h4>
         <ul>

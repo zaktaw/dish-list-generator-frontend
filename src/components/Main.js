@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Dishes from './Dishes'
-import AddDish from './AddDish/AddDish'
+import Dishes from './DishesList/Dishes'
+import AddDish from './DishAdd/AddDish'
 
 const Main = (user) => {
 

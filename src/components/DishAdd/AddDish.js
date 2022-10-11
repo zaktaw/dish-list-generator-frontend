@@ -69,6 +69,15 @@ const AddDish = ({addDish, userId}) => {
                 })
     }
 
+    const removeIngredient = (ingredientToBeRemoved) => {
+        setIngredients(ingredients.filter(ingredient => ingredient != ingredientToBeRemoved))
+    }
+
+    const removeTag = (tagToBeRemoved) => {
+        setTags(tags.filter(tag => tag != tagToBeRemoved))
+    }
+    
+
     return(
     <div className="addDish">
 
@@ -102,11 +111,11 @@ const AddDish = ({addDish, userId}) => {
     </Col>
 
     <Col>
-        <List title={'Ingredients'} list={ingredients}/>
+        <List title={'Ingredients'} list={ingredients} removeListItem={removeIngredient}/>
     </Col>
 
     <Col>
-        <List title={'Tags'} list={tags}/>
+        <List title={'Tags'} list={tags} removeListItem={removeTag}/>
     </Col>
 
     </Row>
