@@ -59,7 +59,8 @@ const AddDish = ({addDish, userId}) => {
                 .then(async response => {
                     console.log(response)
                     if (response.status == 201) {
-                        addDish(dish);
+                        let data = await response.json();
+                        addDish(data); // need to use object provided in response to get access to id
                         setName('');
                         setIngredients([]);
                         setTags([]);
