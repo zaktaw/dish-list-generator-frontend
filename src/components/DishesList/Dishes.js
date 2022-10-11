@@ -2,7 +2,8 @@ import Dish from "./Dish"
 
 const Dishes = ({dishes}) => {
     return (
-        <div>
+        <div className="dishes">
+        <h2>My dishes:</h2>
         {[...dishes].reverse().map((dish) =>
             <Dish dish={dish}/>
         )}

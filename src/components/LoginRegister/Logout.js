@@ -1,3 +1,5 @@
+import Button from 'react-bootstrap/Button';
+
 const Logout = ({user, fSetUser}) => {
     
     function logout() {
@@ -7,7 +9,7 @@ const Logout = ({user, fSetUser}) => {
     return(
         <div className="logout">
             <p>Logged in as {user.email}</p>
-            <button onClick={logout}>Log out</button>
+            <Button onClick={logout} variant="light">Log out</Button>
         </div>
 )}
 

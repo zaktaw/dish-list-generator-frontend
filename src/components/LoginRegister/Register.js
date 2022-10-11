@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { API_BASE_URL } from '../Resources/consts';
+import { API_BASE_URL } from '../../Resources/consts';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 

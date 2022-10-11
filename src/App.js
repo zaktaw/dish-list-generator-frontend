@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import LoginRegister from './components/LoginRegister';
+import LoginRegister from './components/LoginRegister/LoginRegister';
 import Main from './components/Main';
 import Header from './components/Header';
 

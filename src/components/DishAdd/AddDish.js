@@ -107,7 +107,7 @@ const AddDish = ({addDish, userId}) => {
             </div>
         </Form.Group>
     </Form>
-    <button id="btnSubmitDish" onClick={submitDish}>Submit dish</button>
+    <Button id="btnSubmitDish" onClick={submitDish} variant="success">Submit dish</Button>
     </Col>
 
     <Col>
