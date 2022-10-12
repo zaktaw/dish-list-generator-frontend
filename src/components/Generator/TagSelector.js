@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Col from 'react-bootstrap/Col';
 
-const TagSelector = ({ tags, addTagSelector }) => {
+const TagSelector = ({ tags, addTagSelector, tagSelectorKey, updateSelectedTags }) => {
 
     let initialDropdownButtonTitle = 'Add tag';
 
@@ -13,6 +13,7 @@ const TagSelector = ({ tags, addTagSelector }) => {
        
         let tag = e.currentTarget.innerText;
         setDropdownButtonTitle(tag);
+        updateSelectedTags(tagSelectorKey, tag);
         
         if (dropdownButtonTitle == initialDropdownButtonTitle) {
             addTagSelector();
