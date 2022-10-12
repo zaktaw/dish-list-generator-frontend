@@ -8,9 +8,6 @@ import List from "./List"
 
 const Dish = ({ dish, removeDish, userId }) => {
 
-    console.log("DISH");
-    console.log(dish);
-
     function onClickHandler() {
         const requestOptions = {
             method: 'PUT',
@@ -20,7 +17,6 @@ const Dish = ({ dish, removeDish, userId }) => {
 
         fetch(API_BASE_URL + '/removeDish/' + userId, requestOptions)
             .then(async response => {
-                console.log(response)
                 if (response.status == 200) {
                     removeDish(dish.id);
                 }

@@ -17,7 +17,7 @@ const Main = (user) => {
 
     return(
     <div>
-        <Generator/>
+        <Generator user={user.user}/>
         <AddDish addDish={addDish} userId={user.user.id}/>
         {user.user.dishes ? <Dishes dishes={dishes} removeDish={removeDish} userId={user.user.id}/> : <h3>No dishes added</h3>}
     </div>

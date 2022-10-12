@@ -57,7 +57,6 @@ const AddDish = ({addDish, userId}) => {
     
             fetch(API_BASE_URL + '/' + userId, requestOptions)
                 .then(async response => {
-                    console.log(response)
                     if (response.status == 201) {
                         let data = await response.json();
                         addDish(data); // need to use object provided in response to get access to id
@@ -78,7 +77,7 @@ const AddDish = ({addDish, userId}) => {
     
 
     return(
-    <div class="addDish">
+    <div className="addDish">
 
     <h2>Add dish</h2>
 
@@ -110,11 +109,11 @@ const AddDish = ({addDish, userId}) => {
     </Col>
 
     <Col>
-        <List title={'Ingredients'} list={ingredients} removeListItem={removeIngredient}/>
+        {(ingredients.length > 0) ? <List title={'Ingredients'} list={ingredients} removeListItem={removeIngredient}/> : null}
     </Col>
 
     <Col>
-        <List title={'Tags'} list={tags} removeListItem={removeTag}/>
+        {(tags.length > 0) ? <List title={'Tags'} list={tags} removeListItem={removeTag}/> : null}
     </Col>
 
     </Row>
