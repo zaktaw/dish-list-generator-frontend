@@ -83,18 +83,18 @@ const AddDish = ({addDish, userId}) => {
     
     <Col xs={6}>
     <Form>
-        <Form.Group className='w-25'>
+        <Form.Group>
             <Form.Label>Name</Form.Label>
             <Form.Control type='text' value={name} onChange={changeName}></Form.Control>
         </Form.Group>
-        <Form.Group className='w-25'>
+        <Form.Group>
             <Form.Label>Ingredient</Form.Label>
             <div className="d-flex">
                 <Form.Control type='text' onChange={changeIngredient} value={ingredient}></Form.Control>
                 <Button onClick={addIngredient}>+</Button>
             </div>
         </Form.Group>
-        <Form.Group className='w-25'>
+        <Form.Group>
             <Form.Label>Tag</Form.Label>
             <div className="d-flex">
             <Form.Control type='text' onChange={changeTag} value={tag}></Form.Control>

@@ -8,7 +8,7 @@ const Logout = ({user, fSetUser}) => {
 
     return(
         <div className="logout">
-            <p>Logged in as {user.email}</p>
+            <p>Logged in as {user.username}</p>
             <Button onClick={logout} variant="light">Log out</Button>
         </div>
 )}

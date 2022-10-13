@@ -5,32 +5,28 @@ import Form from 'react-bootstrap/Form';
 
 const Register = ({fSetUser}) => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordRepeated, setPasswordRepeated] = useState('');
 
-    function changeFirstName(e) {
-        setFirstName(e.currentTarget.value);
-    }
-
-    function changeLastName(e) {
-        setLastName(e.currentTarget.value);
-    }
-
-    function changeEmail(e) {
-        setEmail(e.currentTarget.value);
+    function changeUsername(e) {
+        setUsername(e.currentTarget.value);
     }
 
     function changePassword(e) {
         setPassword(e.currentTarget.value);
     }
 
+    function changePasswordRepeated(e) {
+        setPasswordRepeated(e.currentTarget.value);
+    }
+
     function regUser() {
+
+        if (password != passwordRepeated) return alert("Passwords do not match");
+
        const user = {
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email,
+        "username": username,
         "password": password
        }
 
@@ -42,14 +38,11 @@ const Register = ({fSetUser}) => {
 
         fetch(API_BASE_URL + '/register', requestOptions)
             .then(async response => {
-                console.log("Response status:")
-                console.log(response)
-                if (response.status == 202) {
+                if (response.status == 201) {
                     const data = await response.json()
-                    console.log(data);
                     fSetUser(data)
                 }
-                else console.log("Registration failed")
+                else alert("Registration failed")
             })
     }
 
@@ -57,21 +50,17 @@ const Register = ({fSetUser}) => {
         <div className='register'>
         <h1>Register account</h1>
         <Form>
-            <Form.Group className='w-25'>
-                <Form.Group>First name:</Form.Group>
-                <Form.Control type="text" name="firstName" placeholder='Enter first name' onChange={changeFirstName}/>
+            <Form.Group>
+                <Form.Group>Username:</Form.Group>
+                <Form.Control type="username" name="username" placeholder='Enter username' onChange={changeUsername}/>
             </Form.Group>
-            <Form.Group className='w-25'>
-                <Form.Group>Last name:</Form.Group>
-                <Form.Control type="text" name="lastName" placeholder='Enter last name' onChange={changeLastName}/>
-            </Form.Group>
-            <Form.Group className='w-25'>
-                <Form.Group>Email:</Form.Group>
-                <Form.Control type="email" name="email" placeholder='Enter email' onChange={changeEmail}/>
-            </Form.Group>
-            <Form.Group className='w-25'>
+            <Form.Group>
                 <Form.Group>Password</Form.Group>
                 <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePassword}/>
+            </Form.Group>
+            <Form.Group>
+                <Form.Group>Repeat password</Form.Group>
+                <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePasswordRepeated}/>
             </Form.Group>
         </Form>
         <Button onClick={regUser}>Register user</Button>

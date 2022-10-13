@@ -15,7 +15,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app'>
     <Header user={user} fSetUser={fSetUser}/>
     {user ? <Main user={user}/> : <LoginRegister fSetUser={fSetUser}/>}
     </div>

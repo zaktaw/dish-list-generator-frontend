@@ -21,7 +21,7 @@ const TagSelector = ({ tags, addTagSelector, tagSelectorKey, updateSelectedTags 
     }
 
     return (
-            <Col>
+            <Col className='tagSelector'>
                 <DropdownButton id="dropdown-item-button" title={dropdownButtonTitle}>
                     {Array.from(tags).map(tag => {
                         return <Dropdown.Item as="button" onClick={onClickHandler}>{tag}</Dropdown.Item>

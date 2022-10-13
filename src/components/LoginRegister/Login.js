@@ -5,11 +5,11 @@ import Form from 'react-bootstrap/Form';
 
 const Login = ({fSetUser}) => {
 
-    const [email, setEmail] = useState()
+    const [username, setusername] = useState()
     const [password, setPassword] = useState()
 
-    function changeEmail(e) {
-        setEmail(e.currentTarget.value);
+    function changeusername(e) {
+        setusername(e.currentTarget.value);
     }
 
     function changePassword(e) {
@@ -18,7 +18,7 @@ const Login = ({fSetUser}) => {
 
     function login() {
         const user = {
-         "email": email,
+         "username": username,
          "password": password
         }
  
@@ -30,13 +30,12 @@ const Login = ({fSetUser}) => {
  
          fetch(API_BASE_URL + '/login', requestOptions)
              .then(async response => {
-                 console.log("Response status:")
-                 console.log(response)
+              
                  if (response.status == 200) {
                     const data = await response.json();
                     fSetUser(data)
                  }
-                 else console.log("Login failed")
+                 else alert("Login failed");
              })
      }
      
@@ -44,11 +43,11 @@ const Login = ({fSetUser}) => {
     <div>
     <h1>Login</h1>
     <Form>
-        <Form.Group className='w-25'>
-            <Form.Label>Email</Form.Label>
-            <Form.Control type='email' placeholder='Enter email' onChange={changeEmail}></Form.Control>
+        <Form.Group>
+            <Form.Label>username</Form.Label>
+            <Form.Control type='username' placeholder='Enter username' onChange={changeusername}></Form.Control>
         </Form.Group>
-        <Form.Group className='w-25'>
+        <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control type='password' placeholder='Enter password' onChange={changePassword}></Form.Control>
         </Form.Group>

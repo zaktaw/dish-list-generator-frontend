@@ -48,7 +48,7 @@ const Query = ({ tags, addQuery, queryKey, updateQueries, removeQuery }) => {
 
         query.numberOfDishes = inputNumberChanged;
         updateQueries(queryKey, query);
-        console.log(disableAddQuery);
+        
         if (!disableAddQuery) {
             addQuery();
             setDisableAddQuery(true);
