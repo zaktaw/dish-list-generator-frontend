@@ -1,8 +1,10 @@
 import Query from "./Query";
+import Output from "./Output";
 
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 const Generator = ({ user }) => {
@@ -12,7 +14,8 @@ const Generator = ({ user }) => {
         return <Query tags={getTags()} addQuery={addQuery} queryKey={queryKey} updateQueries={updateQueries}/>
     }
 
-   const [queryHandler, setQueryHandler] = useState({}); // stores all queries perfomred
+   const [queryHandler] = useState({}); // stores all queries perfomred
+   const [output, setOutput] = useState(null)
 
     function updateQueries(queryKeyFromChild, updatedItem) {
         queryHandler[queryKeyFromChild] = updatedItem;
@@ -35,18 +38,18 @@ const Generator = ({ user }) => {
         return tags;
     }
 
-    function generateDishList() {
+    function generateQueryOutput() {
 
-        let queryResult = {}; // example: {0:, dishes: []}
+        let output = []; // example: {0: {queryTags: [], dishes: []}}
 
         for (const key in queryHandler) {
             let query = queryHandler[key];
             let dishes = getDishesMatchingQuery(query.tags, query.numberOfDishes);
-            queryResult[key] = dishes;
+            let queryObject = {"tags": query.tags, "dishes": dishes};
+            output.push(queryObject);
         }
 
-        console.log("Query result");
-        console.log(queryResult);
+        setOutput(output);
     }
 
     function getDishesMatchingQuery(tags, numberOfDishes) {
@@ -74,12 +77,18 @@ const Generator = ({ user }) => {
         <div className="generator">
             <h2>Generate dishes</h2>
             <Container>
+                <Row>
+                    <Col>
                 {querys.map(query => {
                     return query
                 })}
 
-                <Row>
-                    <Button variant="success" onClick={generateDishList}>Generate</Button>
+                </Col>
+
+                <Col>
+                    {output ? <Output output={output}/> : null}
+                    <Button onClick={generateQueryOutput} variant="success">Generate</Button>
+                </Col>
                 </Row>
             </Container>
 

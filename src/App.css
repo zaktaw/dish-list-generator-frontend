@@ -53,6 +53,14 @@ Button {
   width: 45px;
 }
 
+.outputItem p {
+  font-size: larger;
+}
+
+#outputItemSeperator {
+  margin-right: 10px;
+}
+
 /* Dishes (list) */
 
 .dishes {
