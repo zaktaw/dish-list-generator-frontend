@@ -65,9 +65,11 @@ const Generator = ({ user }) => {
     }
 
     function getDishesMatchingQuery(tags, numberOfDishes) {
-        let dishes = [];
 
-        let userDishesShuffled = shuffle(user.dishes);
+        let dishesMatchingQuery = [];
+
+        let userDishesDuplicate = user.dishes.slice(); // make a shallow copy to retain the original array for future quries
+        let userDishesShuffled = shuffle(userDishesDuplicate);
 
         for (const dish of userDishesShuffled) {
 
@@ -80,12 +82,17 @@ const Generator = ({ user }) => {
             }
 
             if (dishHasAllTagsFromQuery) {
-                dishes.push(dish)
-                if (dishes.length == numberOfDishes) break;
+                dishesMatchingQuery.push(dish)
+
+                //remove item that was pushed from user dish list 
+                const index = userDishesShuffled.indexOf(dish);
+                userDishesShuffled.splice(index, 1);
+
+                if (dishesMatchingQuery.length == numberOfDishes) break;
             }
         }
 
-        return dishes;
+        return dishesMatchingQuery;
     }
 
     return (
