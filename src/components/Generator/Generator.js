@@ -1,5 +1,6 @@
 import Query from "./Query";
 import Output from "./Output";
+import utilityFunctions, { shuffle } from "../../Resources/utilityFunctions"
 
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
@@ -42,8 +43,7 @@ const Generator = ({ user }) => {
 
         let output = []; // example: {0: {queryTags: [], dishes: []}}
 
-        // sort query handler so that queries with the most number of tags are performed first
-        let queryHandlerSorted = sortByNumberOfTagsDescending();
+        let queryHandlerSorted = sortByNumberOfTagsDescending(); // need to sort by number of tags so that more specific queries (queries with more tags) will be performed before less specific queries
 
         for (const query of queryHandlerSorted) {
             let dishes = getDishesMatchingQuery(query.tags, query.numberOfDishes);
@@ -67,7 +67,9 @@ const Generator = ({ user }) => {
     function getDishesMatchingQuery(tags, numberOfDishes) {
         let dishes = [];
 
-        for (const dish of user.dishes) {
+        let userDishesShuffled = shuffle(user.dishes);
+
+        for (const dish of userDishesShuffled) {
 
             let dishHasAllTagsFromQuery = true;
             for (const tag of tags) {
