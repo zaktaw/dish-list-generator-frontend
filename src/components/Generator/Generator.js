@@ -11,15 +11,15 @@ const Generator = ({ user }) => {
 
     let queryKey = 0;
     function query(queryKey) {
-        return <Query tags={getTags()} addQuery={addQuery} queryKey={queryKey} updateQueries={updateQueries}/>
+        return <Query tags={getTags()} addQuery={addQuery} queryKey={queryKey} updateQueries={updateQueries} />
     }
 
-   const [queryHandler] = useState({}); // stores all queries perfomred
-   const [output, setOutput] = useState(null)
+    const [queryHandler] = useState({}); // queries performed. Example: {0: {tags: [], numberOfDishes: 0}}
+    const [output, setOutput] = useState(null)
 
     function updateQueries(queryKeyFromChild, updatedItem) {
         queryHandler[queryKeyFromChild] = updatedItem;
-    }  
+    }
 
     const [querys, setQuerys] = useState([query(queryKey)]);
 
@@ -42,25 +42,38 @@ const Generator = ({ user }) => {
 
         let output = []; // example: {0: {queryTags: [], dishes: []}}
 
-        for (const key in queryHandler) {
-            let query = queryHandler[key];
+        // sort query handler so that queries with the most number of tags are performed first
+        let queryHandlerSorted = sortByNumberOfTagsDescending();
+
+        for (const query of queryHandlerSorted) {
             let dishes = getDishesMatchingQuery(query.tags, query.numberOfDishes);
-            let queryObject = {"tags": query.tags, "dishes": dishes};
+            let queryObject = { "tags": query.tags, "dishes": dishes };
             output.push(queryObject);
         }
 
         setOutput(output);
     }
 
+    function sortByNumberOfTagsDescending() {
+        let queriesArray = Object.values(queryHandler)
+
+        queriesArray = queriesArray.sort(function (a, b) {
+            return b.tags.length - a.tags.length;
+        })
+
+        return queriesArray;
+    }
+
     function getDishesMatchingQuery(tags, numberOfDishes) {
         let dishes = [];
-     
+
         for (const dish of user.dishes) {
-    
+
             let dishHasAllTagsFromQuery = true;
             for (const tag of tags) {
                 if (!dish.tags.includes(tag)) {
                     dishHasAllTagsFromQuery = false;
+                    break;
                 }
             }
 
@@ -79,16 +92,16 @@ const Generator = ({ user }) => {
             <Container>
                 <Row>
                     <Col>
-                {querys.map(query => {
-                    return query
-                })}
+                        {querys.map(query => {
+                            return query
+                        })}
 
-                </Col>
+                    </Col>
 
-                <Col>
-                    {output ? <Output output={output}/> : null}
-                    <Button onClick={generateQueryOutput} variant="success">Generate</Button>
-                </Col>
+                    <Col>
+                        {output ? <Output output={output} /> : null}
+                        <Button onClick={generateQueryOutput} variant="success">Generate</Button>
+                    </Col>
                 </Row>
             </Container>
 
