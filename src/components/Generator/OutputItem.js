@@ -1,4 +1,5 @@
 const OutputItem = ({outputItem}) => {
+    if (outputItem.numberOfdishesRequested == 0) return null;
     return(
         <div className="outputItem d-flex">
             {outputItem.tags.map((tag, index) => {

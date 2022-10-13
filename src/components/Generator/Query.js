@@ -4,8 +4,9 @@ import { useState } from "react";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
-const Query = ({ tags, addQuery, queryKey, updateQueries }) => {
+const Query = ({ tags, addQuery, queryKey, updateQueries, removeQuery }) => {
 
     let tagSelectorKey = 0;
     function tagSelector(tagSelectorKey) {
@@ -41,17 +42,21 @@ const Query = ({ tags, addQuery, queryKey, updateQueries }) => {
         setTagSelectors(tagSelectors => [...tagSelectors, tagSelector(tagSelectorKey)]);
     }
 
-    function handleOnChange(e) {
+    function handleOnChangeInputNumber(e) {
         const inputNumberChanged = Number(e.target.value);
         setInputNumber(inputNumberChanged);
 
         query.numberOfDishes = inputNumberChanged;
         updateQueries(queryKey, query);
-
+        console.log(disableAddQuery);
         if (!disableAddQuery) {
             addQuery();
             setDisableAddQuery(true);
         }
+    }
+
+    function handeOnChangeBtnDeleteQuery() {
+        removeQuery(queryKey);
     }
 
     return (
@@ -61,7 +66,7 @@ const Query = ({ tags, addQuery, queryKey, updateQueries }) => {
                 return tagSelector;
             })}
             <Col>
-                <input type="number" value={inputNumber} min={0} onChange={handleOnChange}></input>
+                <input type="number" value={inputNumber} min={0} onChange={handleOnChangeInputNumber}></input>
             </Col>
         </Row>
         </div>

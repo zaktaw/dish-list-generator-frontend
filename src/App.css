@@ -19,6 +19,11 @@ Button {
   background-color: rgb(184, 218, 218);
 }
 
+.mainHeader {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
 /* Login and register */
 
 .loginRegister {
@@ -32,7 +37,6 @@ Button {
 /* Generator */
 
 .generator {
-  margin-top: 60px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -49,6 +53,13 @@ Button {
   margin-bottom: 5px;
 }
 
+#btnDeleteQuery {
+  width: 30px;
+  padding: 1px;
+  font-size: large;
+  border-radius: 50px;
+}
+
 .query input {
   width: 45px;
 }
@@ -62,10 +73,6 @@ Button {
 }
 
 /* Dishes (list) */
-
-.dishes {
-  margin-top: 60px;
-}
 
 .dish {
   margin-top: 20px;
@@ -87,7 +94,6 @@ Button {
 /* Dish (add) */
 
 .addDish {
-  margin-top: 60px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

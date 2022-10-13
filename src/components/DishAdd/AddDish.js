@@ -78,9 +78,6 @@ const AddDish = ({addDish, userId}) => {
 
     return(
     <div className="addDish">
-
-    <h2>Add dish</h2>
-
     <Container> 
     <Row>
     
