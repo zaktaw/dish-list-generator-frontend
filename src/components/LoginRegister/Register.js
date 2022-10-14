@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { API_BASE_URL } from '../../Resources/consts';
+import { registerRequest } from '../../apiRequests';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const Register = ({fSetUser}) => {
+const Register = ({ fSetUser }) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,18 +25,12 @@ const Register = ({fSetUser}) => {
 
         if (password != passwordRepeated) return alert("Passwords do not match");
 
-       const user = {
-        "username": username,
-        "password": password
-       }
-
-       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        const user = {
+            "username": username,
+            "password": password
         }
 
-        fetch(API_BASE_URL + '/register', requestOptions)
+        registerRequest(user)
             .then(async response => {
                 if (response.status == 201) {
                     const data = await response.json()
@@ -46,25 +40,26 @@ const Register = ({fSetUser}) => {
             })
     }
 
-    return(
+    return (
         <div className='register'>
-        <h1>Register account</h1>
-        <Form>
-            <Form.Group>
-                <Form.Group>Username:</Form.Group>
-                <Form.Control type="username" name="username" placeholder='Enter username' onChange={changeUsername}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Group>Password</Form.Group>
-                <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePassword}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Group>Repeat password</Form.Group>
-                <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePasswordRepeated}/>
-            </Form.Group>
-        </Form>
-        <Button onClick={regUser}>Register user</Button>
+            <h1>Register account</h1>
+            <Form>
+                <Form.Group>
+                    <Form.Group>Username:</Form.Group>
+                    <Form.Control type="username" name="username" placeholder='Enter username' onChange={changeUsername} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Group>Password</Form.Group>
+                    <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePassword} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Group>Repeat password</Form.Group>
+                    <Form.Control type="password" name="password" placeholder='Enter password' onChange={changePasswordRepeated} />
+                </Form.Group>
+            </Form>
+            <Button onClick={regUser}>Register user</Button>
         </div>
-)};
+    )
+};
 
 export default Register

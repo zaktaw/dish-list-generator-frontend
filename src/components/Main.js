@@ -22,9 +22,9 @@ const Main = (user) => {
             <h2 className='mainHeader'>Generate dishes</h2>
             <Generator user={user.user} />
             <h2 className='mainHeader' onClick={() => setShowAddDish(!showAddDish)}>{showAddDish ? <p>Add dish ▲</p> : <p>Add dish ▼</p>}</h2>
-            {showAddDish ? <AddDish addDish={addDish} userId={user.user.id}/> : null}
+            {showAddDish ? <AddDish addDish={addDish} userId={user.user.id} userPassword={user.user.password}/> : null}
             <h2 className='mainHeader' onClick={() => setShowMyDishes(!showMyDishes)}>{showMyDishes ? <p>My dishes ▲</p> : <p>My dishes ▼</p>}</h2>
-            {showMyDishes ? <Dishes dishes={dishes} removeDish={removeDish} userId={user.user.id} /> : null}
+            {showMyDishes ? <Dishes dishes={dishes} removeDish={removeDish} userId={user.user.id} userPassword={user.user.password}/> : null}
         </div>
     )
 }
